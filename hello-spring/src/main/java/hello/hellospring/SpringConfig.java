@@ -19,7 +19,8 @@ public class SpringConfig {
     }
     @Bean
     public MemberRepository memberRepository() {
-// return new MemoryMemberRepository();
+        // return new MemoryMemberRepository();
+        // 바꿀 수 있음 (훨씬 편함)
         return new JdbcMemberRepository(dataSource);
     }
 }

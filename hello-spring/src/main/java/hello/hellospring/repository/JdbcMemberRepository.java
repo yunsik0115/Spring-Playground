@@ -20,12 +20,12 @@ public class JdbcMemberRepository implements MemberRepository {
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, member.getName());
-            pstmt.executeUpdate();
-            rs = pstmt.getGeneratedKeys();
-            if (rs.next()) {
-                member.setId(rs.getLong(1));
+                    Statement.RETURN_GENERATED_KEYS); /*Insert 이후 ID값 얻기*/
+            pstmt.setString(1, member.getName()); /*sql ? 에 getName을 변수로 넣는다*/
+            pstmt.executeUpdate(); /*sql 실행*/
+            rs = pstmt.getGeneratedKeys(); /* ID를 반환함 */
+            if (rs.next()) { /**/
+                member.setId(rs.getLong(1)); /*DB의 Primary Key를 ID로 Set함 (setID)*/
             } else {
                 throw new SQLException("id 조회 실패");
             }
@@ -45,8 +45,8 @@ public class JdbcMemberRepository implements MemberRepository {
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setLong(1, id);
-            rs = pstmt.executeQuery();
+            pstmt.setLong(1, id); /*sql ? 에 id를 변수로 넣는다*/
+            rs = pstmt.executeQuery(); /*조회일경우 executeQuery 사용 이후 rs에 반환 */
             if(rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
