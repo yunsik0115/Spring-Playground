@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Transactional /*DB 상에 commit을 하지 않음으로써, beforeEach, afterEach 해줄 필요가 없다.*/
 class MemberServiceIntegrationTest {
 
     @Autowired
