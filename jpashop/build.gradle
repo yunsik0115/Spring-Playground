@@ -18,14 +18,25 @@ repositories {
 	mavenCentral()
 }
 
+/*iterm에서 ./gradlew dependencies --> 의존관계 쭉 보여준다.*/
+/*Intellij 기준 좌측 상단에도 Gradle 메뉴단에서 의존관계 열람 가능함!*/
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	/*AOP, Hibernate, JDBC(Transaction... etc), HikariCP(커넥션 풀) 2.x대 부터는 기본임.
+	(운영하는데 도움 됨)
+	:spring-boot-starter --> Logging 지원함 (logback 기본적으로 사용하고 필요함)
+	slf4j ==> Logging Interface (쓰는게 대세다)*/
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	/*web --> tomcat, mvc 내장되어 있음 (자체 서버)*/
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	/*junit, spring-test(Test code) Mockito(mock 객체), AssertJ(테스트 보조 유틸리티) -- etc*/
+	/*MVC, ORM, JPA, Hibernate -- 핵심 라이브러리*/
+	/*H2 Database Client, HikariCP(Connection Pool), Web(Thymeleaf), Logging(SLF4J&Logbakc)*/
+	/*Spring Data JPA는 Spring, JPA 이해 이후 응용기술로써 사용할 것!*/
 }
 
 test {
