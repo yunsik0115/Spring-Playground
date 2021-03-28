@@ -18,7 +18,8 @@ repositories {
 	mavenCentral()
 }
 
-/*iterm에서 ./gradlew dependencies --> 의존관계 쭉 보여준다.*/
+/*iterm에서 ./gradlew dependencies --> 의존관계 쭉 보여준다.
+* Windows에서는 gradlew.bat를 이용한다. */
 /*Intellij 기준 좌측 상단에도 Gradle 메뉴단에서 의존관계 열람 가능함!*/
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -42,7 +43,10 @@ dependencies {
 		exclude group: "org.hamcrest", module: "hamcrest-core"
 	} // JUnit4 추가) 이 강의에서 사용하는 버전에 따른다.
 	implementation 'org.springframework.boot:spring-boot-devtools'
-	// recompile 만으로 변경 적용이 가능함.
+	// recompile 만으로 변경사항 적용이 가능함.
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+	// Query Parameter Log 남기는 라이브러리 (아니면 application.yml에 있는 방법도 있음)
+	// 운영단계에서 배포할 경우 --> 성능 테스트 꼭 필요함 (성능저하의 요인이 될 수 있음!!)
 }
 
 test {

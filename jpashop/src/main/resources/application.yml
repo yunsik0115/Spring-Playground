@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;    #여러개 한번에 접근했을때 좀더 빠르게 처리됨
+    username: sa
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create      # 자동으로 테이블 생성
+      properties:
+        hibernate:
+          #show_sql: true
+          format_sql: true        #Spring Boot Manual 들어가서 파야함.
+
+logging:
+  level:
+    org.hibernate.SQL: debug  #logger를 통해 sql문 출력해 줌.
+    #org.hibernate.type: trace -> logger로 찍어줌
+
+# application.yml이 복잡해질 경우 더 편리한 경우가 많음.
