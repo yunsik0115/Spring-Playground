@@ -27,6 +27,7 @@ dependencies {
 	:spring-boot-starter --> Logging 지원함 (logback 기본적으로 사용하고 필요함)
 	slf4j ==> Logging Interface (쓰는게 대세다)*/
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	/*View Template Setting 얘가 다 해준다!*/
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	/*web --> tomcat, mvc 내장되어 있음 (자체 서버)*/
 	compileOnly 'org.projectlombok:lombok'
@@ -37,6 +38,11 @@ dependencies {
 	/*MVC, ORM, JPA, Hibernate -- 핵심 라이브러리*/
 	/*H2 Database Client, HikariCP(Connection Pool), Web(Thymeleaf), Logging(SLF4J&Logbakc)*/
 	/*Spring Data JPA는 Spring, JPA 이해 이후 응용기술로써 사용할 것!*/
+	testImplementation("org.junit.vintage:junit-vintage-engine") {
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+	} // JUnit4 추가) 이 강의에서 사용하는 버전에 따른다.
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	// recompile 만으로 변경 적용이 가능함.
 }
 
 test {
