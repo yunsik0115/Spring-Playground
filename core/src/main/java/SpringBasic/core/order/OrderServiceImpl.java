@@ -1,6 +1,7 @@
 package SpringBasic.core.order;
 
 import SpringBasic.core.discount.DiscountPolicy;
+import SpringBasic.core.discount.FixDiscountPolicy;
 import SpringBasic.core.member.Member;
 import SpringBasic.core.member.MemberRepository;
 import SpringBasic.core.member.MemoryMemberRepository;
@@ -14,8 +15,13 @@ public class OrderServiceImpl implements OrderService {
     * 따라서 아래 코드는 망한 코드
     * FixDiscountPolicy를 변경하는 순간 orderImpl소스도 변경해야 함 => OCP 위반 */
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
     /* 누군가 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 넣어줘야 */
 
     @Override

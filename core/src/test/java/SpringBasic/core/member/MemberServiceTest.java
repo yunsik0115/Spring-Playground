@@ -1,6 +1,8 @@
 package SpringBasic.core.member;
 
+import SpringBasic.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
@@ -8,7 +10,13 @@ public class MemberServiceTest {
     * 실패시 원인 캐치가 빠르게 가능함. TEST 코드는 거의 필수로 알아야함.
     * 결론 = JUNIT을 눈여겨보도록 합시다.*/
 
-    MemberService memberService = new MemberServiceImpl();
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join() {
