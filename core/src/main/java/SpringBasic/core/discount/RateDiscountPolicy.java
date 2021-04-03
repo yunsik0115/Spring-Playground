@@ -6,7 +6,7 @@ import SpringBasic.core.member.Member;
 
 public class RateDiscountPolicy implements DiscountPolicy {
 
-    private int discountPercent = 10;
+    private final int discountPercent = 10;
 
     @Override
     public int discount(Member member, int price){
