@@ -1,8 +1,11 @@
 package SpringBasic.core.member;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class MemoryMemberRepository implements MemberRepository {
     private static final Map<Long, Member> store = new HashMap<>();
     /*ConCurrent Hashmap을 써야함 -> 동시성 이유 (여기선 예제라 일단 Hashmap만)
