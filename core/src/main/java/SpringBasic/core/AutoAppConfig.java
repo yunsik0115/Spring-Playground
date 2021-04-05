@@ -13,5 +13,4 @@ import org.springframework.context.annotation.FilterType;
         // 기존에 등록한 AppConfig(TestConfig... etc)를 예외처리하기 위함.
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class))
 public class AutoAppConfig {
-
 }
