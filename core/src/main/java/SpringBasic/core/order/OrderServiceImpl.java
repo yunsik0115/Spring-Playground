@@ -5,10 +5,12 @@ import SpringBasic.core.discount.FixDiscountPolicy;
 import SpringBasic.core.member.Member;
 import SpringBasic.core.member.MemberRepository;
 import SpringBasic.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     /* 추상 인터페이스 뿐 아니라, 구체(구현) 클래스에도 의존하고 있음
@@ -22,10 +24,11 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy; //final -> 무조건 값이 존재해야 함.
     @Autowired // 불변이면서 필수인 의존관계에 사용함 (1회적으로 무조건 호출 보장)
     // 생성자가 1개 있으면 Autowired 생략 가능(근데 그냥 쓰자)
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    /* requiredargsconstructor가 자동으로 하기 코드를 생성해 줌.
+        public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy; // 생성자 호출
-    }
+    }*/
     /* 누군가 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 넣어줘야 */
 
     @Override
