@@ -19,11 +19,12 @@ public class OrderServiceImpl implements OrderService {
     * FixDiscountPolicy를 변경하는 순간 orderImpl소스도 변경해야 함 => OCP 위반 */
 
     private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
-    @Autowired
+    private final DiscountPolicy discountPolicy; //final -> 무조건 값이 존재해야 함.
+    @Autowired // 불변이면서 필수인 의존관계에 사용함 (1회적으로 무조건 호출 보장)
+    // 생성자가 1개 있으면 Autowired 생략 가능(근데 그냥 쓰자)
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicy = discountPolicy; // 생성자 호출
     }
     /* 누군가 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 넣어줘야 */
 
