@@ -12,6 +12,7 @@ import java.util.Enumeration;
 public class RequestParamServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // 1. 전체 parameter 조회
         Enumeration<String> parameterNames = req.getParameterNames();
         req.getParameterNames().asIterator()
@@ -19,6 +20,7 @@ public class RequestParamServlet extends HttpServlet {
         
         // 2. 단일 parameter 조회
         String username = req.getParameter("username"); // 단일일 경우 사용
+        // getParameter -> get, post 모두 지원함
         System.out.println("username = " + username);
         String age = req.getParameter("age");
         System.out.println("age = " + age);
