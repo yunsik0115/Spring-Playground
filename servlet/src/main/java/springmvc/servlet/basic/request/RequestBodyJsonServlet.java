@@ -1,6 +1,8 @@
 package springmvc.servlet.basic.request;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.util.StreamUtils;
+import springmvc.servlet.basic.HelloData;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -11,15 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-@WebServlet(name = "requestBodyStringServlet", urlPatterns = "/request-body-string")
-public class RequestBodyStringServlet extends HttpServlet {
+@WebServlet(name ="requestBodyJsonServlet", urlPatterns = "/request-body-json")
+public class RequestBodyJsonServlet extends HttpServlet {
+    private ObjectMapper objectMapper = new ObjectMapper();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletInputStream inputStream = req.getInputStream();
-        // -> 이 코드는 바디의 내용을 바이트 코드를 반환한다. 따라서 String으로 보려면 문자표 지정필요.
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-        // 바이트->문자변환하는 경우 인코딩 정보를 제공해야 함
+
         System.out.println("messageBody = " + messageBody);
+
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        System.out.println("helloData.getUsername() = " + helloData.getUsername());
+        System.out.println("helloData.getAge() = " + helloData.getAge());
+
         resp.getWriter().write("ok");
+
     }
 }
