@@ -3,10 +3,10 @@ package domain.member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import springmvc.servlet.domain.member.Member;
+import springmvc.servlet.domain.member.MemberRepository;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberRepositoryTest {
     MemberRepository memberRepository = MemberRepository.getInstance();
