@@ -31,6 +31,7 @@ public class MemberRepository {
 
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
+        // store의 value들을 새로운 arraylist에 담아서 반환함(원본에는 지장 안주기 위함)
     }
 
     public void clearStore(){
